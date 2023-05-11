@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>:: Bookstore</title>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>BOOKSTORE</h1>
+        <ul class="bar">
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">STORE</a></li>
+            <li><a href="#">CONTACT</a></li>
+        </ul>
+    </nav>
+    <div class="scrollable">
+        <div id="book-list" class="booklist">
+
+        </div>  
+    </div>
+    
+    <div class="form-item">
+        <div id="book-form">
+            <label>Title</label>
+            <input type="text" id="titleinput" class="bk-f" id="bk-f" placeholder="Title"/>
+            <label>Author</label>
+            <input type="text" id="authorinput" class="bk-f" placeholder="Author"/>
+            <label>Genre:</label>
+            <select id="genreinput" title="Genre" name="Genre" class="bk-f">
+                <option value="">Select</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Non-fiction">Non-fiction</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Horror">Horror</option>
+                <option value="Comedy">Comedy</option>
+                <option value="Mystery">Romance</option>
+            </select>
+            <button onclick="submitForm()" >Save</button>
+        </div>    
+    </div>
+    <script>
+        function submitForm() {
+            // Get the form values
+            const title = document.getElementById('titleinput').value;
+            const author = document.getElementById('authorinput').value;
+            const genre = document.getElementById('genreinput').value;
+        
+            const bookList = document.getElementById('book-list');   
+            bookList.style.overflow = 'auto';
+        
+
+            const bookDiv = document.createElement('div');
+            bookDiv.classList.add('book');
+
+            const titleSpan = document.createElement('span');
+            titleSpan.classList.add('title');
+            titleSpan.innerText = 'Book Title: ' + title;
+
+
+            const authorSpan = document.createElement('span');
+            authorSpan.classList.add('author');
+            authorSpan.innerText = 'Book Author: ' + author;
+
+            const genreSpan = document.createElement('span');
+            genreSpan.classList.add('genre');
+            genreSpan.innerText = 'Book Genre: ' + genre;
+
+
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('deletebtn');
+            deleteBtn.innerText = 'Remove';
+            deleteBtn.addEventListener('click', () => {
+                bookDiv.remove();
+            });
+
+            bookDiv.appendChild(titleSpan);
+            bookDiv.appendChild(authorSpan);
+            bookDiv.appendChild(genreSpan);
+            bookDiv.appendChild(deleteBtn);
+            bookList.appendChild(bookDiv);
+        
+            // Reset the form fields
+            document.getElementById('titleinput').value = '';
+            document.getElementById('authorinput').value = '';
+            document.getElementById('genreinput').value = 'Select';
+        };
+
+    </script>
+</body>
+</html>
